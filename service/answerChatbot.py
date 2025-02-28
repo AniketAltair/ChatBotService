@@ -16,7 +16,7 @@ with open(DATA_FILE, "rb") as f:
 SIMILARITY_THRESHOLD = 0.3
 
 def get_best_match(question: str) -> str:
-    query_embedding = np.array(model.encode([question]), dtype=np.float32)
+    query_embedding = np.array(model.encode([question]), dtype=np.float16)
     _, index_result = index.search(query_embedding, 1)
     best_match_index = index_result[0][0]
 

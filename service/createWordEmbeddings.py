@@ -59,7 +59,7 @@ def store_embeddings():
         return
 
     all_embeddings = word_embeddings + WordEmbeddings_general
-    vectors = np.array(model.encode(all_embeddings), dtype=np.float32)
+    vectors = np.array(model.encode(all_embeddings), dtype=np.float16)
 
     with open(DATA_FILE, "wb") as f:
         pickle.dump(all_embeddings, f)
