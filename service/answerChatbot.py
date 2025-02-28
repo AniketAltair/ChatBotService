@@ -21,7 +21,7 @@ def get_best_match(question: str) -> str:
     best_match_index = index_result[0][0]
 
     closest_match = word_embeddings[best_match_index]
-    best_match_embedding = np.array(model.encode([closest_match]), dtype=np.float32)
+    best_match_embedding = np.array(model.encode([closest_match]), dtype=np.float16)
     similarity_score = cosine_similarity(query_embedding, best_match_embedding)[0][0]
 
     if similarity_score < SIMILARITY_THRESHOLD:
@@ -90,7 +90,7 @@ def calculateFinalMacrosInfo(answer, question):
     
     return {
         "quantity": requested_quantity,
-        "unit": unit if unit else "unknown",
+        "unit": unit if unit else None,
         "protein": round(float(protein.group(1)) * factor, 1) if protein else None,
         "carbohydrates": round(float(carbohydrates.group(1)) * factor, 1) if carbohydrates else None,
         "fats": round(float(fats.group(1)) * factor, 1) if fats else None,
